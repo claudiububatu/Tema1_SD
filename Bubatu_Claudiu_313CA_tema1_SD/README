@@ -1,0 +1,66 @@
+@COPYRIGHT 2021 Bubatu Claudiu-Mihai, 313CA
+-------------------------------------------------------------------------------
+Fiecare comanda(ADD, SHW, BLH, UPG, EXP, RMV, COL, ROT, FREE) este
+reprezentata de o functie.
+
+Functiile mentionate sunt de tip void, dar am folosit si functiile
+cdll_create_galaxy, planet_create, ce returneaza o lista sau 
+cdll_remove_nth_node(functie pe care am facut-o in cadrul laboratorului),
+ce returneaza un nod.
+
+Cele 2 functii ce au ca rezultat cate o lista au avut rolul de a crea
+lista de liste necesara rezolvarii problemei.
+ 
+In functia ADD:
+- am adaugat cate un nod planeta in galaxie, urmand sa fac cast fiecarui
+- nod din galaxie la o structura de tip planeta, ce contine lista de scuturi,
+- numarul de scuturi, numele si kill-urile acesteia.
+
+In functia SHW:
+- am printat toate datele despre o planeta, precum si mesajele de eroare
+- in cazul in care planeta de pe pozitia planet_index nu se afla in galaxie
+
+Functia cdll_remove_nth_node:
+- a fost foarte utila in implementarea functiilor BLH, RMV, FREE
+- deoarece aceasta avea grija sa realizeze legaturile corespunzatoare
+dintre scuturi/planete dupa ce eliminam o componenta din lista.
+- De asemenea, marimea galaxiei/listei de scuturi scadea si ea la apelarea
+- acesteia. In cazul functiei FREE, am folosit aceasta functie atat pentru
+- eliminarea unei planete, cat si pentru eliminarea unui scut pentru a 
+- elibera memoria.
+
+In functia UPG:
+- am parcurs galaxia pana la pozitia planetei dorite, urmand sa fac acelasi
+- lucru pentru a ajunge la pozitia scutului din cadrul listei de scuturi a
+- planetei respective. Odata ajuns aici, am crescut valoarea scutului cu o
+- valoare de upgrade.
+
+In functia EXP:
+- am parcurs asemanator galaxia ca la functia UPG, dupa care am parcurs
+- lista de shield-uri a planetei pana la final, iar ulterior am adaugat
+- un nou scut.
+
+In functia COL:
+- am parcurs cei 2 indexi ai celor 2 planete pana cand am ajuns la ei.
+- Dupa aceea am parcurs cele 2 liste de scuturi ale celor 2 planete pana
+- la pozitiile cerute in enunt. Am scazut data (de tip int) din fiecare
+- scut al fiecarei planete cu 1. In cazul in care valorile scuturilor unei
+- anumite planete era mai mic ca 0, aceasta exploda. Aceasta explozie
+- a fost realizata cu ajutorul functiei BLH, care, datorita functiei de
+-cdll_remove_nth_node avea grija sa imi elibereze si planeta (distrusa)
+- din memorie. Pentru a evita sa am aceleasi mesaje de eroare ca ale 
+- functiei BLH (mesajele fiind diferite), am adaugat inca un parametru 
+- show functiei BLH, iar in functie de valorile acestuia(0 sau 1) imi
+- afiseaza mesajele de eroare corespunzatoare fiecarei functii.
+
+In functia ROT:
+- am parcurs galaxia/planeta asemanator ca in celelalte functii. 
+- In aceasta functie am mutat doar head-ul listei de scuturi cu cate
+- unitati doream in directia c sau t.
+
+In functia main:
+- am adaugat toate comenzile pe care le putem efectua
+- (ADD, BLH, UOG, EXP, RMV, COL, ROT, SHW)
+- adaugand si citind parametrii corespunzatori fiecarei functii. 
+
+
